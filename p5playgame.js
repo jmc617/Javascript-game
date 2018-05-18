@@ -1,8 +1,6 @@
 // starting score and time
 var score = 0
 var time = 60
-//for player to have same amount of time at reset need to account for 1 sec reset time
-var resetTime = time+1
 //bad squares starting speed
 var speed = 1.4
 
@@ -13,8 +11,7 @@ setInterval(function timer(){
   time --
   if (time <= 0) {
     gameOver = true
-  } else {
-    }
+  }
 }, 1000)
 
 //new game function
@@ -23,6 +20,7 @@ function newGame() {
   window.location.reload();
 }
 
+//loads once
 function setup() {
   //numbers in paratheses width and height of canvas
   var can = createCanvas(800, 550);
@@ -30,12 +28,12 @@ function setup() {
   // and size of sprite(50x50)
   //player sprite
   circle = createSprite(500, 450, 50, 50);
-  //makes sprite a circle
+  //makes sprite a circle not deafault rect
   circle.draw = function() {
     //need first two zeros to center new circle over original sprite. second two numbers are size of new drawing
     ellipse(0,0,50,50,);
   }
-  //sets collide detection shape to a circle shape instead of default square
+  //sets collision detection shape to a circle shape instead of default square
   circle.setCollider('circle',0,0,25)
   //barrier sprites
    //row1
@@ -67,6 +65,7 @@ function setup() {
   bad4 = createSprite(200,300,50,50)
 }
 
+//refreshes 60 times a sec
 function draw() {
   //sprite colors
   circle.shapeColor = 'teal'
@@ -75,7 +74,7 @@ function draw() {
 
   //canvas color
   background(0, 10, 0);
-
+  //bad movement speed and direction
   bad.setSpeed(-(speed), 90)
   bad2.setSpeed(speed, 90)
   bad3.setSpeed(-(speed), 0)
@@ -92,6 +91,7 @@ function draw() {
     text('Game Over! Final Score: '+score+' ~ Click mouse to play again', 400, 200);
 
   } else {
+
     //scoreboard
     fill(51, 51, 255);
     textAlign(CENTER)
@@ -222,7 +222,7 @@ function draw() {
       score--
       updateCoordinates(bad4)
     }
-  //end of draw function-creates sprites
+  //creates sprites-has to be at the end
     drawSprites();
   }
 }
