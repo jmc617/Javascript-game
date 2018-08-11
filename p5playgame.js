@@ -1,7 +1,7 @@
 // starting score and time
 var score = 0
 var time = 60
-//bad squares starting speed
+//enemy squares starting speed
 var speed = 1.4
 
 gameOver = false
@@ -35,7 +35,7 @@ function setup() {
   }
   //sets collision detection shape to a circle shape instead of default square
   circle.setCollider('circle',0,0,25)
-  //barrier sprites
+  //stationary barrier sprites with size and position
    //row1
   rectangle = createSprite(300,75,20,100);
   rectangle2 = createSprite(500,75,20,100);
@@ -147,7 +147,7 @@ function draw() {
         circle.velocity.y = -abs(circle.velocity.y);
       }
 
-    //makes rectangles solid to circle
+    //makes stationary rectangles solid to circle
     circle.collide(rectangle);
     circle.collide(rectangle2);
     circle.collide(rectangle3);
@@ -196,14 +196,12 @@ function draw() {
       score ++
       //increase bad speed with each point
       speed += .2
-      console.log(speed);
       updateCoordinates(littlesquare)
     }
     if (circle.collide(littlesquare2) == true) {
       score ++
       //increase bad speed with each point
       speed += .2
-      console.log(speed);
       updateCoordinates(littlesquare2)
     }
     if (circle.collide(bad) == true) {
